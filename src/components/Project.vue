@@ -5,9 +5,12 @@
       :enabled="project.userMode"
     >
       <!-- Top toolbar -->
+      <b-img
+        src="logo-small.png"
+        alt="My way: communicate, create, explore"
+        left
+      ></b-img>
       <b-navbar class="mt-2">
-        <b-navbar-brand href="#">My way</b-navbar-brand>
-
         <b-navbar-nav class="ml-auto">
           <FileManagerToolbar
             class="mr-3"

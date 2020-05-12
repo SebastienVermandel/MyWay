@@ -1,14 +1,16 @@
 <template>
-  <b-form inline class="mb-3" @submit.stop.prevent>
+  <b-form inline class="mb-4 mt-2" @submit.stop.prevent>
     <b-form-input
+      size="sm"
       v-model="projectNameSetByUser"
       @blur="$emit('rename', project, projectNameSetByUser)"
       placeholder="Project name"
-      class="mr-3"
+      class="ml-auto mr-3"
       trim
     ></b-form-input>
     <label class="mr-2" for="switches">Switches:</label>
     <b-form-spinbutton
+      size="sm"
       class="mr-3"
       id="switches"
       v-model="project.switchCount"
@@ -18,7 +20,9 @@
     ></b-form-spinbutton>
     <label class="mr-2" for="talkover">Talk over:</label>
     <b-form-radio-group
+      size="sm"
       label="Talk-over mode"
+      class="mr-3"
       v-model="project.talkoverMode"
       :options="talkoverModes"
       @change="$emit('change')"
