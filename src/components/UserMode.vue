@@ -68,7 +68,7 @@ export default {
 }
 
 .animate {
-  animation: glow 0.2s 1 alternate;
+  animation: glow 0.2s 2 alternate;
 }
 
 @keyframes glow {
@@ -76,7 +76,7 @@ export default {
     filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.7));
   }
   to {
-    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.7));
+    filter: drop-shadow(0px 0px 15px rgba(0, 0, 0, 0.7));
   }
 }
 </style>
