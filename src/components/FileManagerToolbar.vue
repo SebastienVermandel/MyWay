@@ -119,7 +119,7 @@ export default {
     renameProject: function(project, projectName) {
       this.saveProject(project);
       this.deleteProject(project.name);
-      project.name = projectName || this.getDefaultProjectName();
+      project.name = projectName;
       this.saveProject(project);
       this.loadProject(project.name, /* isInitial= */ false);
     }
