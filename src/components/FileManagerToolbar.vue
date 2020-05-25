@@ -30,6 +30,13 @@
           Import
         </b-button>
       </b-button-group>
+
+      <b-button-group class="ml-2" size="sm">
+        <b-button v-on:click="openDonateWindow">
+          <b-icon icon="heart"></b-icon>
+          Donate
+        </b-button>
+      </b-button-group>
     </b-button-toolbar>
 
     <!-- Load modal -->
@@ -122,6 +129,12 @@ export default {
       project.name = projectName;
       this.saveProject(project);
       this.loadProject(project.name, /* isInitial= */ false);
+    },
+    openDonateWindow: function() {
+      window.open(
+        "https://thepacecentre.charitycheckout.co.uk/donate",
+        "_blank"
+      );
     }
   },
   computed: {
