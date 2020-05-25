@@ -123,7 +123,7 @@ export default {
       let clip = group.clips[playIndex];
 
       if (clip.blob) {
-        const audio = new Audio(window.URL.createObjectURL(clip.blob));
+        const audio = new Audio(window.URL.createObjectURL(new Blob([clip.blob])));
         this.lastAudio = audio;
         if (group.mode == "Scan" && !fullVolume) {
           audio.volume = 0.2;

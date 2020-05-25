@@ -101,9 +101,12 @@ export default {
         () => {
           const elapsedMs = new Date() - this.startTime;
           if (elapsedMs > 500 && this.chunks.length > 0) {
-            this.clip.blob = new Blob(this.chunks);
-            this.chunks = [];
-            this.$emit("change", this.clip.blob);
+            console.log(this.chunks);
+            new Blob(this.chunks).arrayBuffer().then(buffer => {
+              this.clip.blob = buffer;
+              this.chunks = [];
+              this.$emit("change", this.clip.blob);
+            });
           } else {
             this.$root.$emit("bv::show::tooltip", this._uid + "-tooltip");
             if (this.tooltipTimeout) {
@@ -122,7 +125,7 @@ export default {
     },
     play() {
       if (this.clip.blob) {
-        new Audio(window.URL.createObjectURL(this.clip.blob)).play();
+        new Audio(window.URL.createObjectURL(new Blob([this.clip.blob]))).play();
       }
     }
   }
