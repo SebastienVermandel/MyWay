@@ -125,7 +125,9 @@ export default {
     },
     play() {
       if (this.clip.blob) {
-        new Audio(window.URL.createObjectURL(new Blob([this.clip.blob]))).play();
+        new Audio(
+          window.URL.createObjectURL(new Blob([this.clip.blob]))
+        ).play();
       }
     }
   }
