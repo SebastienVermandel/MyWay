@@ -55,6 +55,8 @@
           @pressed="pressed"
           @remove="remove"
           :border-variant="group.highlighted ? 'dark' : ''"
+          style="min-width: 40rem;"
+          class="mb-5"
         ></GroupCard>
       </b-card-group>
     </template>
