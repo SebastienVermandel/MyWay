@@ -58,7 +58,6 @@
             @change="$emit('change')"
           ></KeyBindingButton>
 
-
           <!-- Key mode-->
           <b-dropdown
             size="sm"
