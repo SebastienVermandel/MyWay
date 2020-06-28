@@ -52,8 +52,17 @@
           </b-dropdown>
 
           <!-- Key mode-->
-          <b-dropdown size="sm" :text="group.keyMode || 'Standard'"
-              v-b-tooltip.hover.bottom="group.keyMode == 'Direct' ? 'Direct mode: hold down switch to play' : group.keyMode == 'Latched' ? 'Latched mode: press switch to start playback, which continues until all clips have played' : 'Standard mode: press switch to play next clip'">
+          <b-dropdown
+            size="sm"
+            :text="group.keyMode || 'Standard'"
+            v-b-tooltip.hover.bottom="
+              group.keyMode == 'Direct'
+                ? 'Direct mode: hold down switch to play'
+                : group.keyMode == 'Latched'
+                ? 'Latched mode: press switch to start playback, which continues until all clips have played'
+                : 'Standard mode: press switch to play next clip'
+            "
+          >
             <b-dropdown-item href="#" v-on:click="setKeyMode"
               >Standard</b-dropdown-item
             >
@@ -71,7 +80,6 @@
             @press="$emit('pressed', group.id)"
             @change="$emit('change')"
           ></KeyBindingButton>
-
         </b-button-group>
 
         <!-- Clip advancement mode-->

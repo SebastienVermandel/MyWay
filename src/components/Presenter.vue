@@ -128,7 +128,11 @@ export default {
     },
     handleRelease(switchIndex) {
       let group = this.project.groups[switchIndex];
-      if (group.keyMode == 'Direct' && this.lastAudio != null && !this.lastAudio.ended) {
+      if (
+        group.keyMode == "Direct" &&
+        this.lastAudio != null &&
+        !this.lastAudio.ended
+      ) {
         this.lastAudio.pause();
         this.lastAudio = null;
         group.sequenceIndex = group.oldSequenceIndex;
@@ -155,7 +159,10 @@ export default {
         if (group.mode == "Scan" && !fullVolume) {
           audio.volume = 0.2;
         }
-        if (group.keyMode == "Latched" && group.sequenceIndex != group.clips.length - 1) {
+        if (
+          group.keyMode == "Latched" &&
+          group.sequenceIndex != group.clips.length - 1
+        ) {
           audio.onended = () => {
             this.handlePress(group.id);
           };
