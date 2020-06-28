@@ -51,6 +51,14 @@
             </b-dropdown-item>
           </b-dropdown>
 
+          <!-- Key picker -->
+          <KeyBindingButton
+            v-bind:group="group"
+            @press="$emit('pressed', group.id)"
+            @change="$emit('change')"
+          ></KeyBindingButton>
+
+
           <!-- Key mode-->
           <b-dropdown
             size="sm"
@@ -73,13 +81,6 @@
               >Latched</b-dropdown-item
             >
           </b-dropdown>
-
-          <!-- Key picker -->
-          <KeyBindingButton
-            v-bind:group="group"
-            @press="$emit('pressed', group.id)"
-            @change="$emit('change')"
-          ></KeyBindingButton>
         </b-button-group>
 
         <!-- Clip advancement mode-->
