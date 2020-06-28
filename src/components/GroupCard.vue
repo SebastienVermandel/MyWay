@@ -6,7 +6,12 @@
           class="m-1"
           size="sm"
           variant="outline-secondary"
-          @click="$emit('pressed', group.id)"
+          @mousedown="$emit('pressed', group.id)"
+          @mouseleave="$emit('released', group.id)"
+          @mouseup="$emit('released', group.id)"
+          @touchstart="$emit('pressed', group.id)"
+          @touchend="$emit('released', group.id)"
+          @touchcancel="$emit('released', group.id)"
         >
           <b-icon :icon="group.icon" :style="'color: ' + group.color"></b-icon>
         </b-button>
@@ -46,14 +51,30 @@
             </b-dropdown-item>
           </b-dropdown>
 
+          <!-- Key mode-->
+          <b-dropdown size="sm" :text="group.keyMode || 'Standard'"
+              v-b-tooltip.hover.bottom="group.keyMode == 'Direct' ? 'Direct mode: hold down switch to play' : group.keyMode == 'Latched' ? 'Latched mode: press switch to start playback, which continues until all clips have played' : 'Standard mode: press switch to play next clip'">
+            <b-dropdown-item href="#" v-on:click="setKeyMode"
+              >Standard</b-dropdown-item
+            >
+            <b-dropdown-item href="#" v-on:click="setKeyMode"
+              >Direct</b-dropdown-item
+            >
+            <b-dropdown-item href="#" v-on:click="setKeyMode"
+              >Latched</b-dropdown-item
+            >
+          </b-dropdown>
+
           <!-- Key picker -->
           <KeyBindingButton
             v-bind:group="group"
             @press="$emit('pressed', group.id)"
             @change="$emit('change')"
           ></KeyBindingButton>
+
         </b-button-group>
 
+        <!-- Clip advancement mode-->
         <b-dropdown size="sm" class="m-1" :text="group.mode">
           <b-dropdown-item href="#" v-on:click="setMode"
             >Sequence</b-dropdown-item
@@ -205,6 +226,10 @@ export default {
     },
     setMode(e) {
       this.group.mode = e.target.text;
+      this.$emit("change");
+    },
+    setKeyMode(e) {
+      this.group.keyMode = e.target.text;
       this.$emit("change");
     },
     setColor(color) {

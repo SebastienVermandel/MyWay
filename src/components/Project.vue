@@ -32,6 +32,7 @@
 
     <UserMode
       @pressed="pressed"
+      @released="released"
       v-bind:project="project"
       ref="userMode"
       v-if="project.userMode"
@@ -53,6 +54,7 @@
           v-bind:group="group"
           @change="updated"
           @pressed="pressed"
+          @released="released"
           @remove="remove"
           :border-variant="group.highlighted ? 'dark' : ''"
           style="min-width: 40rem;"
@@ -64,6 +66,7 @@
     <Presenter
       v-bind:project="project"
       @pressed="pressed"
+      @released="released"
       ref="presenter"
     ></Presenter>
   </b-container>
@@ -133,6 +136,9 @@ export default {
       if (this.$refs.userMode) {
         this.$refs.userMode.handlePress(groupIndex);
       }
+    },
+    released(groupIndex) {
+      this.$refs.presenter.handleRelease(groupIndex);
     },
     renameProject(project, projectName) {
       this.$refs.fileManagerToolbar.renameProject(project, projectName);

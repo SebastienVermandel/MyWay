@@ -63,12 +63,25 @@ export default {
     window.addEventListener(
       "keydown",
       function(event) {
-        if (event.isComposing) {
+        if (event.isComposing || event.repeat) {
           return;
         }
         for (const group of this.project.groups) {
           if (group.keyCode == event.keyCode) {
             this.$emit("pressed", group.id);
+          }
+        }
+      }.bind(this)
+    );
+    window.addEventListener(
+      "keyup",
+      function(event) {
+        if (event.isComposing) {
+          return;
+        }
+        for (const group of this.project.groups) {
+          if (group.keyCode == event.keyCode) {
+            this.$emit("released", group.id);
           }
         }
       }.bind(this)
@@ -113,6 +126,18 @@ export default {
       this.playClip(group);
       this.advance(group);
     },
+    handleRelease(switchIndex) {
+      let group = this.project.groups[switchIndex];
+      if (group.keyMode == 'Direct' && this.lastAudio != null && !this.lastAudio.ended) {
+        this.lastAudio.pause();
+        this.lastAudio = null;
+        group.sequenceIndex = group.oldSequenceIndex;
+        for (const c of group.clips) {
+          c.highlighted = false;
+        }
+        group.clips[group.sequenceIndex].highlighted = true;
+      }
+    },
     playClip(group, fullVolume) {
       // TODO: Use transition for background color highlight animation.
       //group.highlighted = true;
@@ -129,6 +154,11 @@ export default {
         this.lastAudio = audio;
         if (group.mode == "Scan" && !fullVolume) {
           audio.volume = 0.2;
+        }
+        if (group.keyMode == "Latched" && group.sequenceIndex != group.clips.length - 1) {
+          audio.onended = () => {
+            this.handlePress(group.id);
+          };
         }
         audio.play();
       }

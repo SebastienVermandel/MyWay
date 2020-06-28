@@ -66,6 +66,7 @@ export default new Vuex.Store({
             oldSequenceIndex: 0,
             sequenceIndex: 0,
             mode: "Sequence",
+            keyMode: "Standard",
             active: true,
             icon: "circle-fill",
             color: "#007bff"

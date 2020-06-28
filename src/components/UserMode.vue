@@ -15,7 +15,11 @@
           :style="'color: ' + group.color"
           font-scale="20%"
           @mousedown="$emit('pressed', group.id)"
+          @mouseleave="$emit('released', group.id)"
+          @mouseup="$emit('released', group.id)"
           @touchstart="$emit('pressed', group.id)"
+          @touchend="$emit('released', group.id)"
+          @touchcancel="$emit('released', group.id)"
         ></b-icon>
       </b-col>
     </b-row>
@@ -34,7 +38,11 @@
           :style="'color: ' + group.color"
           font-scale="20%"
           @mousedown="$emit('pressed', group.id)"
+          @mouseleave="$emit('released', group.id)"
+          @mouseup="$emit('released', group.id)"
           @touchstart="$emit('pressed', group.id)"
+          @touchend="$emit('released', group.id)"
+          @touchcancel="$emit('released', group.id)"
         ></b-icon>
       </b-col>
     </b-row>
