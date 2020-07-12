@@ -33,6 +33,17 @@
       Already playing a clip. Change talkover mode to allow
       interruption/talk-over.
     </b-alert>
+
+    <!-- Video player -->
+    <b-modal
+      id="full-screen-modal"
+      ref="modal-video-player"
+      hide-backdrop
+      hide-footer
+      hide-header
+    >
+      <youtube ref="video-player" fitParent></youtube>
+    </b-modal>
   </div>
 </template>
 
@@ -51,7 +62,7 @@ export default {
       promptScanWarningShowSeconds: 0,
       converseWarningShowSeconds: 0,
       talkoverWarningShowSeconds: 0,
-      lastAudio: null
+      lastMedia: null
     };
   },
   watch: {
@@ -91,15 +102,15 @@ export default {
     handlePress(switchIndex) {
       let group = this.project.groups[switchIndex];
 
-      if (this.lastAudio != null && !this.lastAudio.ended) {
+      if (this.lastMedia != null && !this.lastMedia.ended) {
         // Always interrupt in prompt/scan mode.
         if (
           this.project.talkoverMode == "interrupt" ||
           group.mode == "Prompt" ||
           group.mode == "Scan"
         ) {
-          this.lastAudio.pause();
-          this.lastAudio = null;
+          this.lastMedia.pause();
+          this.lastMedia = null;
         } else if (this.project.talkoverMode == "no") {
           this.talkoverWarningShowSeconds = 2;
           return;
@@ -130,11 +141,11 @@ export default {
       let group = this.project.groups[switchIndex];
       if (
         group.keyMode == "Direct" &&
-        this.lastAudio != null &&
-        !this.lastAudio.ended
+        this.lastMedia != null &&
+        !this.lastMedia.ended
       ) {
-        this.lastAudio.pause();
-        this.lastAudio = null;
+        this.lastMedia.pause();
+        this.lastMedia = null;
         group.sequenceIndex = group.oldSequenceIndex;
         for (const c of group.clips) {
           c.highlighted = false;
@@ -150,12 +161,51 @@ export default {
         return;
       }
       let clip = group.clips[playIndex];
-
-      if (clip.blob) {
+      this.playMedia(group, clip, fullVolume);
+      for (const c of group.clips) {
+        c.highlighted = false;
+      }
+      clip.highlighted = true;
+    },
+    playMedia(group, clip, fullVolume) {
+      if (clip.video && clip.video.id) {
+        let modalVideoPlayer = this.$refs["modal-video-player"];
+        let self = this;
+        let lastMedia = {
+          ended: false,
+          pause: () => {
+            let videoPlayer = self.$refs["video-player"];
+            if (videoPlayer) {
+              videoPlayer.player.stopVideo();
+            }
+            modalVideoPlayer.hide();
+          }
+        };
+        this.lastMedia = lastMedia;
+        this.$root.$on("bv::modal::shown", () => {
+          let player = this.$refs["video-player"].player;
+          player
+            .loadVideoById({
+              videoId: clip.video.id,
+              startSeconds: clip.video.start,
+              endSeconds: clip.video.end
+            })
+            .then(() => {
+              player.playVideo();
+            });
+          player.addEventListener("onStateChange", event => {
+            if (event.data === 0 /* ended */) {
+              modalVideoPlayer.hide();
+              lastMedia.ended = true;
+            }
+          });
+        });
+        modalVideoPlayer.show();
+      } else if (clip.blob) {
         const audio = new Audio(
           window.URL.createObjectURL(new Blob([clip.blob]))
         );
-        this.lastAudio = audio;
+        this.lastMedia = audio;
         if (group.mode == "Scan" && !fullVolume) {
           audio.volume = 0.2;
         }
@@ -169,10 +219,6 @@ export default {
         }
         audio.play();
       }
-      for (const c of group.clips) {
-        c.highlighted = false;
-      }
-      clip.highlighted = true;
     },
     advance(group) {
       group.oldSequenceIndex = group.sequenceIndex;
@@ -232,3 +278,21 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+::v-deep #full-screen-modal > .modal-dialog {
+  max-width: 100%;
+  margin: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  display: flex;
+  position: fixed;
+  z-index: 100000;
+}
+::v-deep #full-screen-modal > .modal-dialog > .modal-content > .modal-body {
+  padding: 0;
+}
+</style>
