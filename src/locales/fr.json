@@ -1,0 +1,63 @@
+{
+  "src\\components\\clip": {
+    "endTime": "Heure de fin :",
+    "ndash": "{1} - {2}",
+    "pasteYoutubeVideo": "Coller l'ID d'une vidéo YouTube ou son URL",
+    "startTime": "Heure de début :"
+  },
+  "src\\components\\filemanagertoolbar": {
+    "delete": "Effacer",
+    "donate": "Soutenir",
+    "downloadAll": "Télécharger tout",
+    "dragAndDrop": "Glisser un fichier de données ici pour l'importer.",
+    "import": "Importer",
+    "new": "Nouveau",
+    "open": "Ouvrir",
+    "selectProjectToOpen": "Sélectionner le fichier à ouvrir",
+    "yes": "Oui"
+  },
+  "src\\components\\groupcard": {
+    "addClip": "Ajouter un clip",
+    "converseA": "Tour par tour - A",
+    "converseB": "Tour par tour - B",
+    "direct": "Direct",
+	"directTooltip": "Mode direct : maintenir le contacteur appuyé pour jouer",
+    "latched": "Verrouillé",
+    "latchedTooltip": "Mode verrouillé : appuyer une fois sur le contacteur pour jouer toute la liste",
+	"prompt": "Valider",
+    "promptModePlays": "Le mode 'Valider' joue le clip sélectionné par un autre contacteur au volume max.",
+    "random": "Aléatoire",
+    "scan": "Balayer",
+    "sequence": "Séquence",
+    "shuffle": "Mélangé",
+    "standard": "Standard",
+	"standardTooltip": "Mode standard : appuyer sur le contacteur pour jouer le prochain clip"
+  },
+  "src\\components\\keybindingbutton": {
+    "switch": "Contacteur",
+	"tooltip": "Maintenir appuyé puis appuyer sur la touche pour configurer le contacteur"
+  },
+  "src\\components\\longpresscollapse": {
+    "pressAndHold": "Appuyer et maintenir pour afficher"
+  },
+  "src\\components\\presenter": {
+    "alreadyPlayingA": "Un clip est déjà en cours de lecture. Changer le mode de lecture pour autoriser une interruption ou la lecture par dessus.",
+    "pressOtherSwitch": "Appuyer sur l'autre contacteur pour faire du tour par tour",
+    "toUsePromptscan": "Pour utiliser le mode Balayer/Valider, définir un contacteur en mode 'Balayer' avec une liste de clips lus à volume faible et un autre en mode 'Valider' qui déclenche la lecture du clip sélectionné au volume max."
+  },
+  "src\\components\\project": {
+    "userMode": "Mode Utilisateur"
+  },
+  "src\\components\\projectsetupbar": {
+    "projectName": "Nom du projet",
+    "switches": "Contacteurs :",
+    "talkOver": "Lecture par dessus",
+    "talkoverMode": "Mode de lecture",
+	"talkoverModeYes": "Oui",
+	"talkoverModeInterrupt": "Interrompre",
+	"talkoverModeNo": "Non"
+  },
+  "src\\components\\recordaudiobutton": {
+    "holdToRecord": "Maintenir appuyer pour enregistrer"
+  }
+}

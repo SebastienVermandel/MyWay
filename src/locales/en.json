@@ -1,0 +1,63 @@
+{
+  "src\\components\\clip": {
+    "endTime": "End time:",
+    "ndash": "\r\n        {1} - {2}\r\n      ",
+    "pasteYoutubeVideo": "Paste YouTube video ID or URL",
+    "startTime": "Start time:"
+  },
+  "src\\components\\filemanagertoolbar": {
+    "delete": "\r\n      Delete\r\n    ",
+    "donate": "\r\n          Donate\r\n        ",
+    "downloadAll": "\r\n          Download all\r\n        ",
+    "dragAndDrop": "Drag and drop exported database file here to import.",
+    "import": "\r\n          Import\r\n        ",
+    "new": "\r\n          New\r\n        ",
+    "open": "\r\n          Open\r\n        ",
+    "selectProjectToOpen": "Select project to open",
+    "yes": "Yes"
+  },
+  "src\\components\\groupcard": {
+    "addClip": "\r\n            Add clip\r\n          ",
+    "converseA": "Converse A",
+    "converseB": "Converse B",
+    "direct": "Direct",
+	"directTooltip": "Direct mode: hold down switch to play",
+    "latched": "Latched",
+	"latchedTooltip": "Latched mode: press switch to start playback, which continues until all clips have played",
+    "prompt": "Prompt",
+    "promptModePlays": "'Prompt' mode plays clips from another switch at full volume.",
+    "random": "Random",
+    "scan": "Scan",
+    "sequence": "Sequence",
+    "shuffle": "Shuffle",
+    "standard": "Standard",
+	"standardTooltip": "Standard mode: press switch to play next clip"
+  },
+  "src\\components\\keybindingbutton": {
+    "switch": "Switch",
+	"tooltip": "Hold while pressing the key to use for the switch"
+  },
+  "src\\components\\longpresscollapse": {
+    "pressAndHold": "Press and hold to expand"
+  },
+  "src\\components\\presenter": {
+    "alreadyPlayingA": "\r\n      Already playing a clip. Change talkover mode to allow\r\n      interruption/talk-over.\r\n    ",
+    "pressOtherSwitch": "\r\n      Press other switch for converse\r\n    ",
+    "toUsePromptscan": "\r\n      To use Prompt/Scan mode, set one switch to 'Scan' with a list of clips to\r\n      scan through at low volume, and another to 'Prompt' to trigger playback of\r\n      the selected clip at full volume\r\n    "
+  },
+  "src\\components\\project": {
+    "userMode": "User mode"
+  },
+  "src\\components\\projectsetupbar": {
+    "projectName": "Project name",
+    "switches": "Switches:",
+    "talkOver": "Talk over",
+    "talkoverMode": "Talk-over mode",
+	"talkoverModeYes": "Yes",
+	"talkoverModeInterrupt": "Interrupt",
+	"talkoverModeNo": "No"
+  },
+  "src\\components\\recordaudiobutton": {
+    "holdToRecord": "Hold to record"
+  }
+}
